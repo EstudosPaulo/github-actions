@@ -21,7 +21,8 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Build and Push
-        run: docker build -f Dockerfile --tag prgs/teste:latest . 
+        # run: docker build -f Dockerfile --tag prgs/teste:latest .
+        run: ls && pwd
 
       # - name: Build and Push
       #   id: docker_build
