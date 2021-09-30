@@ -50,7 +50,6 @@ jobs:
       - name: Build e Push 
         run: |
           docker build . --file Dockerfile --tag prgs/app:latest
-          docker tag prgs/app:latest
           docker push prgs/app:latest
 
   # docker:
