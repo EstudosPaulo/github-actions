@@ -15,13 +15,13 @@ jobs:
     environment: 
       name: dev
     steps:
-      - name: Login Docker Hub    
       - uses: actions/checkout@v1
+      - name: Login Docker Hub    
         uses: docker/login-action@v1 
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-          
+
       - name: Build e Push 
         run: |
           docker build . --file docker/Dockerfile --tag prgs/app:latest
