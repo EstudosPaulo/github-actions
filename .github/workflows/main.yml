@@ -1,12 +1,24 @@
 name: Deploy
 on: [ push ]
 
-  steps:
-    - name: Login to DockerHub
-      uses: docker/login-action@v1 
-      with:
-        username: ${{ secrets.DOCKER_HUB_USERNAME }}
-        password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    environment: 
+      name: dev
+    steps:
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+
+  build:
+    runs-on: ubuntu-latest
+    needs: rspec
+    steps:
+      - name: Build
+        run: echo "Build"
 
     # - name: Build and push
     #   id: docker_build
@@ -20,16 +32,3 @@ on: [ push ]
     # - name: Image digest
     #   run: echo ${{ steps.docker_build.outputs.digest }}
 
-# jobs:
-#   rspec:
-#     runs-on: ubuntu-latest
-#     steps:
-#       - name: Rspec
-#         run: echo "Rspec Rails"
-
-#   build:
-#     runs-on: ubuntu-latest
-#     needs: rspec
-#     steps:
-#       - name: Build
-#         run: echo "Build"
