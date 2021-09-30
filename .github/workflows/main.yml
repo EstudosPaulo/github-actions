@@ -1,0 +1,16 @@
+name: EstudoCD
+on: [push]
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Rspec
+        run: echo "Rspec Rails"
+
+  build:
+    runs-on: ubuntu-latest
+    needs: rspec
+    steps:
+      - name: Build
+        run: echo "Build"
