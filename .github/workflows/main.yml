@@ -52,10 +52,10 @@ jobs:
       - name: Build and Push Docker Image
           uses: docker/build-push-action@v1
           with:
-              dockerfile: ./Dockerfile
-              registry: docker.github.com
-              repository: prgs/teste
-              tags: latest
+            dockerfile: ./Dockerfile
+            registry: docker.github.com
+            repository: prgs/teste
+            tags: latest
 
       # - name: Build and Push
       #   uses: actions/checkout@v2
