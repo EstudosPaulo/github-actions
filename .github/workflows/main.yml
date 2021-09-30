@@ -37,44 +37,37 @@ jobs:
       - name: Rspec
         run: echo "Rspec"
 
-  docker:
-    runs-on: ubuntu-latest
-    needs: rspec
-    environment: 
-      name: dev
-    steps:
+      - uses: actions/checkout@v1
+
       - name: Login Docker Hub
         uses: docker/login-action@v1 
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: Publish image
-        uses: docker/build-push-action@v1
-        with:
-          repository: prgs/teste
-          tag_with_ref: true
-          tag_with_sha: true
 
+      - name: Build e Push 
+        run: |
+          docker build . --file Dockerfile --tag prgs/app:latest
+          docker tag prgs/app:latest
+          docker push prgs/app:latest
 
-      # - name: Build and Push
-      #   uses: actions/checkout@v2
-      #   run: ls -la ${{ github.workspace }}
+  # docker:
+  #   runs-on: ubuntu-latest
+  #   needs: rspec
+  #   environment: 
+  #     name: dev
+  #   steps:
+  #     - name: Login Docker Hub
+  #       uses: docker/login-action@v1 
+  #       with:
+  #         username: ${{ secrets.DOCKER_HUB_USERNAME }}
+  #         password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+  #     - name: Checkout
+  #       uses: actions/checkout@v1
+  #     - name: Publish image
+  #       uses: docker/build-push-action@v1
+  #       with:
+  #         repository: prgs/teste
+  #         tag_with_ref: true
+  #         tag_with_sha: true
 
-      # - name: Build and Push
-      #   id: docker_build
-      #   uses: docker/build-push-action@v2
-      #   with:
-      #     context: ./
-      #     file: ./Dockerfile
-      #     builder: ${{ steps.buildx.outputs.name }}
-      #     push: true
-      #     tags:  prgs/teste:latest
-      #     cache: enable
-      #     cache-from: type=local,src=/tmp/.buildx-cache
-      #     cache-to: type=local,dest=/tmp/.buildx-cache
-
-      # - name: Image digest
-      #   run: echo ${{ steps.docker_build.outputs.digest }}
-      #   run: docker build -f Dockerfile --tag prgs/teste:latest .
