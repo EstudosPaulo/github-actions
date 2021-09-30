@@ -48,20 +48,20 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-
-      - name: Build and Push Docker Image
-      - uses: actions/checkout@v2
-      - uses: docker/build-push-action@v1
+      - name: Checkout
+        uses: actions/checkout@v1
+      - name: Publish image
+        uses: docker/build-push-action@v1
         with:
-          dockerfile: ./Dockerfile
-          registry: docker.github.com
+          registry: docker.pkg.github.com
           repository: prgs/teste
-          tags: latest
+          tag_with_ref: true
+          tag_with_sha: true
+
 
       # - name: Build and Push
       #   uses: actions/checkout@v2
       #   run: ls -la ${{ github.workspace }}
-
 
       # - name: Build and Push
       #   id: docker_build
