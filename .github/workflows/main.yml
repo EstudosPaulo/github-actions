@@ -22,7 +22,7 @@ jobs:
 
       - name: Build and Push
         # run: docker build -f Dockerfile --tag prgs/teste:latest .
-        run: pwd
+        run: ls Dockerfile
 
       # - name: Build and Push
       #   id: docker_build
