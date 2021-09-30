@@ -33,6 +33,8 @@ on:
 jobs:
   rspec:
     runs-on: ubuntu-latest
+    environment: 
+      name: dev
     steps:
       - name: Rspec
         run: echo "Rspec"
