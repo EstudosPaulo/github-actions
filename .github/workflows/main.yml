@@ -5,13 +5,13 @@ on:
 
 jobs:
   rspec:
-    runs-on: rspec
+    runs-on: self-hosted
     steps:
       - name: Rspec
         run: echo "Rspec"
 
   docker:
-    runs-on: docker
+    runs-on: self-hosted
     needs: rspec
     environment: 
       name: dev
