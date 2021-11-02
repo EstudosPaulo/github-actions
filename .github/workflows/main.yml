@@ -1,5 +1,3 @@
-runs-on: self-hosted
-
 on:
   push:
     branches:
@@ -7,13 +5,13 @@ on:
 
 jobs:
   rspec:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     steps:
       - name: Rspec
         run: echo "Rspec"
 
   docker:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: rspec
     environment: 
       name: dev
