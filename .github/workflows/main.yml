@@ -6,6 +6,7 @@ on:
 jobs:
   rspec:
     runs-on: self-hosted
+    container: node:10.16-jessie
     steps:
       - name: Rspec
         run: echo "Rspec"
