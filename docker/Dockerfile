@@ -1,3 +1,3 @@
 FROM nginx
 
-RUN echo "ok " >/tmp/1
+RUN echo "ok 2" >/tmp/1
