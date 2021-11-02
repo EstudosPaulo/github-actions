@@ -5,13 +5,13 @@ on:
 
 jobs:
   rspec:
-    runs-on: [ self-hosted, deploy, rspec, kubernetes, docker, ec2 ]
+    runs-on: [ rspec ]
     steps:
       - name: Rspec
         run: echo "Rspec"
 
   docker:
-    runs-on: [ self-hosted, deploy, rspec, kubernetes, docker, ec2 ]
+    runs-on: [ docker ]
     needs: rspec
     environment: 
       name: dev
